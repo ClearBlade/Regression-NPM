@@ -36,7 +36,7 @@
   "gateways": [],
   "name": "Regression-NPM",
   "private": false,
-  "image_url": "https://i.imgur.com/hVU8nno.png",
+  "image_url": "https://i.imgur.com/DLfs23Q.png",
   "dependencies": {
     "some_clearblade_lib": "latest",
     "http": "latest"
