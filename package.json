@@ -1,6 +1,6 @@
 {
   "author": "Rajas Deshpande <rdeshpande@clearblade.com>",
-  "description": "Regression NPM",
+  "description": "Regression Library",
   "asset_types": [
     "System",
     "Code Libraries",
@@ -34,7 +34,7 @@
   ],
   "protocols": [],
   "gateways": [],
-  "name": "Regression-NPM",
+  "name": "Regression-Library",
   "private": false,
   "image_url": "https://i.imgur.com/DLfs23Q.png",
   "dependencies": {
@@ -46,12 +46,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/ClearBlade/Regression-NPM"
+    "url": "https://github.com/ClearBlade/Regression-Library"
   },
   "bugs": {
-    "url": "https://github.com/ClearBlade/Regression-NPM/issues"
+    "url": "https://github.com/ClearBlade/Regression-Library/issues"
   },
-  "homepage": "https://github.com/ClearBlade/Regression-NPM#readme",
+  "homepage": "https://github.com/ClearBlade/Regression-Library#readme",
   "devDependencies": {
     "jsdoc-to-markdown": "^4.0.1"
   }
