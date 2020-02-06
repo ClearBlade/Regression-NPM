@@ -35,84 +35,52 @@ Follow these [steps](https://github.com/ClearBlade/Machine-Learning-Node-Librari
 
 ## Usage
 
-- This IPM package consists of a Neural Networks Library that can be imported in the ClearBlade Platform in order to train and test machine learning models on the platform.
+- This IPM package consists of a Regression Library that can be imported in the ClearBlade Platform in order to train and test machine learning models on the platform.
 
-- This library currently supports implementation of 8 types of neural networks which are
-  - brain.NeuralNetwork - Feedforward Neural Network with backpropagation
-  - brain.NeuralNetworkGPU - Feedforward Neural Network with backpropagation, GPU version
-  - brain.recurrent.RNNTimeStep - Time Step Recurrent Neural Network or "RNN"
-  - brain.recurrent.LSTMTimeStep - Time Step Long Short Term Memory Neural Network or "LSTM"
-  - brain.recurrent.GRUTimeStep - Time Step Gated Recurrent Unit or "GRU"
-  - brain.recurrent.RNN - Recurrent Neural Network or "RNN"
-  - brain.recurrent.LSTM - Long Short Term Memory Neural Network or "LSTM"
-  - brain.recurrent.GRU - Gated Recurrent Unit or "GRU"
-  - [Why different types of Neural Networks?](https://github.com/BrainJS/brain.js#why-different-neural-network-types)
+- This library supports both linear and polynomial regression.
 
-- A brief tutorial about how to design neural networks with the Brain-JS library can be found [here](https://scrimba.com/g/gneuralnetworks)
-
-- The following code snippet loads the Brain JS library and allows your code to access functionality of the library APIs via the **brain** variable.
+- First we define the training data which we will be using for predicting using linear regression. The data below is recorded by a temperature sensor over a period of 20 days. 
 
 ``` javascript
-  var brain = BrainJS();
+  var inputs = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20];
+  var outputs = [73.4, 76.2, 62.3, 80.2, 100, 94, 88.3, 70, 78, 83, 83, 91, 74, 68, 84, 81, 90, 94, 103, 99];
 ```
 
-- Once we define the **brain** variable, we configure the neural networks by providing different hyperparameters. The hyperparameters can be adjusted according to the user to get the best classification accuracy. There are different hyperparameters that can be provided. 
-  - In this example, we have provided two hyperparameters viz. **activation** which introduces non-linearity. There are currently four supported activation functions: sigmoid (default), relu, leaky-relu, tanh. 
-  -  The second hyperparameter is **hiddenLayers** which defines the number of neurons in the hidden layers. In this case, there are 2 hidden layers and there are 64 neurons in the first layer and 128 neurons in the second layer.
+- The following code snippet loads the Regression library and allows your code to access functionality of the library APIs via the **model** variable.
 
 ``` javascript
-  var net = new brain.NeuralNetwork({
-    activation: "relu",
-    hiddenLayers: [64, 128]
-  });
+  const model = MLRegression().SLR;
 ```
 
-- More options for hyperparameters can be found [here](https://github.com/BrainJS/brain.js#examples). 
+- Once we define the **model** variable, we define a new regression model with the given input training data and the expected outputs. We get a trained model (in this case **linear**) and this model is stored in the regression variable.
+
+``` javascript
+   var regression = new model(inputs, outputs);
+```
+
+- Once the model is trained, predict the value for the 24th day.
+
+``` javascript
+  var test = [24];
+  var prediction = regression.predict(test[0]);
+```
+
+- In a similar way, polynomial regression can also be performed
+
+``` javascript
+  const degree = 2;
+
+  const new_model = MLRegression().PolynomialRegression
+  
+  var regression = new new_model(inputs, outputs, degree);    // degree of the polynomial equation is provided
+
+  var test = 24;
+  var prediction = regression.predict(test));
+```
  
-- After configuring the neural network, the training data can be set up as shown below. This data includes Readings recorded from 3 sensors (Power, Temperature and Accelerometer) inside a machine. The training labels are also defined which give information about whether a maintenance was required for a given set of sensor values. ( 0 - Maintenance Not Required; 1 - Maintenance Required )
-
-``` javascript
-  var trainingData = [
-    { input : { power: 1350, temperature: 73.4, accelerometer: 0.0683 }, output: { not_required : 0 } },
-    { input : { power: 1350, temperature: 73.4, accelerometer: 0.0685 }, output: { not_required : 0 } }, 
-    { input : { power: 1532, temperature: 83.1, accelerometer: 0.5272 }, output: { not_required : 0 } },
-    { input : { power: 1710, temperature: 77.3, accelerometer: 1.7210 }, output: { required : 1 } }, 
-    { input : { power: 1200, temperature: 76.6, accelerometer: 0.0688 }, output: { not_required : 0 } },
-    { input : { power: 1820, temperature: 82.1, accelerometer: 0.4333 }, output: { required : 1 } },
-    { input : { power: 1421, temperature: 75.4, accelerometer:0.0695 }, output: { not_required : 0 } },
-    { input : { power: 1800, temperature: 95.1, accelerometer: 1.9000 }, output: { required : 1 } },
-    { input : { power: 1520, temperature: 82.4, accelerometer: 0.4272 }, output: { not_required : 0 } },
-    { input : { power: 1740, temperature: 95.0, accelerometer: 1.7150 }, output: { required : 1 } },
-  ]
-```
-
-- Using this training data, train the classifier as follows. Different training options that can be given are prrovided [here](https://github.com/BrainJS/brain.js#training-options)
-
-``` javascript
-  net.train( 
-    trainingData,     
-    {
-      iterations: 100,
-      learningRate: 0.1,
-      log: true,
-      logPeriod: 10
-    }
-  );
-```
-
-- The output after training of the model:
-
-```
-{
-  error: 0.0039139985510105032,  // training error
-  iterations: 406                // training iterations
-}
-```
-
-- Once the classifer is trained, predict for a given set of sensor values, if a maintenance is required or not.
-``` javascript
-  var prediction = net.run({ power: 1780, temperature: 95.5, accelerometer: 1.8120 });
-```
+- Additional information can also be logged using the **regression** variable
+  - regression.coefficients -  Prints the coefficients in increasing order of power (from 0 to degree).
+  - regression.toString(3) - Prints a human-readable version of the function.
 
 - The implementation of this library is done in the [smoke test](https://github.com/ClearBlade/regression-js/blob/master/code/services/RegressionSmokeTests/RegressionSmokeTests.js) and you can refer to the [**Official Documentation**](https://github.com/mljs/regression) of that library to explore more options that you can use.  
 
