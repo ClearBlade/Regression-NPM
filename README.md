@@ -90,7 +90,7 @@ https://github.com/ClearBlade/brain-js
 
 ### Code Services
 
-``` regressionExample ``` : A code service to show working of Regression Library.
+``` RegressionExample ``` : A code service to show working of Regression Library.
 
 ## Advanced 
 
