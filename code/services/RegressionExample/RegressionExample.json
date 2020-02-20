@@ -5,7 +5,7 @@
     "dependencies": "log,RegressionLibrary",
     "execution_timeout": 60,
     "logging_enabled": true,
-    "name": "regressionExamples",
+    "name": "RegressionExample",
     "params": [
         "{}"
     ],

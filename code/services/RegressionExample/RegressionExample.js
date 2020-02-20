@@ -1,4 +1,4 @@
-function regressionExamples(req, resp) {
+function RegressionExample(req, resp) {
 
   /* Simple Linear Regression Example */
 
