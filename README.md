@@ -78,19 +78,19 @@ https://github.com/ClearBlade/brain-js
   - regression.coefficients -  Prints the coefficients in increasing order of power (from 0 to degree).
   - regression.toString(3) - Prints a human-readable version of the function.
 
-- The implementation of this library is done in the [smoke test](https://github.com/ClearBlade/regression-js/blob/master/code/services/RegressionSmokeTests/RegressionSmokeTests.js) and you can refer to the [**Official Documentation**](https://github.com/mljs/regression) of that library to explore more options that you can use.  
+- The implementation of this library is done in the [smoke test](https://github.com/ClearBlade/regression-js/blob/master/code/services/regressionExamples/regressionExamples.js) and you can refer to the [**Official Documentation**](https://github.com/mljs/regression) of that library to explore more options that you can use.  
 
 ## Assets
 
 ### Libraries 
 
-| Library  | Description  | Official Documentation |   
-|---|---|---|
-| ``` RegressionLibrary ```  | A Library Implementing Linear and Polynomial Regression | https://github.com/mljs/regression  | 
+| Library                   | Description                                             | Official Documentation             |
+| ------------------------- | ------------------------------------------------------- | ---------------------------------- |
+| ``` RegressionLibrary ``` | A Library Implementing Linear and Polynomial Regression | https://github.com/mljs/regression |
 
 ### Code Services
 
-``` RegressionSmokeTest ``` : A code service to show working of Regression Library.
+``` regressionExample ``` : A code service to show working of Regression Library.
 
 ## Advanced 
 
